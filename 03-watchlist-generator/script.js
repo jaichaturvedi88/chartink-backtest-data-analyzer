@@ -7,7 +7,6 @@ function readCSVFile() {
   if (files.length > 0) {
     // Selected file
     var file = files[0];
-    //   fileNameDiv.innerText = getFileName(file.name);
 
     // FileReader Object
     var reader = new FileReader();
@@ -36,8 +35,8 @@ function createHeaderDropDown(headerRowData) {
   // split by comma to get row arrar
   let headerRow = headerRowData.split(",");
   let select = document.createElement("select");
-  let createFIleButton = document.createElement("button");
-  createFIleButton.innerText = "Create Text File";
+  let generateWatchlistButton = document.createElement("button");
+  generateWatchlistButton.innerText = "Generate Watchlist";
   for (let index = 0; index < headerRow.length; index++) {
     let option = document.createElement("option");
     option.innerText = headerRow[index].replace(/"/g, "");
@@ -46,9 +45,10 @@ function createHeaderDropDown(headerRowData) {
   }
   select.setAttribute("class", "columnDropdown");
   select.setAttribute("onChange", "getHeaderOption()");
-  createFIleButton.setAttribute("onClick", "getColumnData()");
+  generateWatchlistButton.setAttribute("onClick", "getColumnData()");
+  generateWatchlistButton.classList.add('btn', 'btn-secondary', 'btn-sm', 'ms-2');
   dropDownContainer.appendChild(select);
-  dropDownContainer.appendChild(createFIleButton);
+  dropDownContainer.appendChild(generateWatchlistButton);
 }
 function getHeaderOption() {
   let selectHeader = document.querySelector(".columnDropdown");
@@ -66,11 +66,9 @@ function getColumnData() {
     headerDataArray.push(headerRowData);
     if (headerRowData === selectedHeaderName) {
       selectedHeaderNameIndex = headerDataArray.indexOf(selectedHeaderName);
-      console.log(selectedHeaderNameIndex);
       break;
     }
   }
-  
 
   let stockSymbolSet = new Set();
   for (let rowIndex = 1; rowIndex < rowsData.length; rowIndex++) {
@@ -88,9 +86,9 @@ function getColumnData() {
 }
 
 function createTextFile(columnData) {
-  console.log(columnData);
+  // console.log(columnData);
   let link = document.createElement("a");
-  // add content in fileof type text using blob object
+  // add content in file of type text using blob object
   let file = new Blob([columnData], { type: "text/plain" });
   link.href = URL.createObjectURL(file);
   // download and name of file

@@ -14,14 +14,14 @@
 
 <body data-bs-theme="dark">
   <!-- Read CSV file -->
-  <div class="header">
-    <div class="fileSelector">
+  <div class="header d-flex">
+    <div class="fileSelector me-2">
       <input type="file" name="file" id="file" accept=".csv" onchange="readCSVFile()" />
       <input type="button" id="btnsubmit" value="Submit" onclick="readCSVFile();" />
     </div>
-    <div class="fileName" style='margin-left: 100px'></div>
+    <!-- <div class="fileName" style='margin-left: 100px'></div> -->
     <div class="headerDropDown"></div>
-    <div class="form-check form-switch">
+    <div class="form-check form-switch position-absolute top-0 end-0 pe-2 pt-1">
       <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="toggleTheme()">
     </div>
   </div>
